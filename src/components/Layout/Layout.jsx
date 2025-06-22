@@ -1,13 +1,12 @@
+import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
-import css from './Layout.module.css';
 
+// ✅ Правильный экспорт (default)
 export default function Layout() {
   return (
-    <div className={css.container}>
+    <div>
       <AppBar />
-      <main className={css.main}>
-        {/* Здесь будут рендериться страницы */}
-      </main>
+      <Outlet />
     </div>
   );
 }
