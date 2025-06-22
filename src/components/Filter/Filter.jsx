@@ -1,23 +1,22 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { setNameFilter, selectNameFilter } from '../../redux/filtersSlice';
+import { useDispatch } from 'react-redux';
+import { setFilter } from '../../redux/filter/slice';
+import css from './Filter.module.css';
 
-const Filter = () => {
+export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectNameFilter);
+
+  const handleFilterChange = e => {
+    dispatch(setFilter(e.target.value));
+  };
 
   return (
-    <div>
-      <label>
-        Фільтр контактів:
-        <input
-          type="text"
-          value={filter}
-          onChange={e => dispatch(setNameFilter(e.target.value))}
-          placeholder="Пошук за іменем"
-        />
-      </label>
-    </div>
+    <label className={css.filterLabel}>
+      Find contacts by name
+      <input
+        className={css.filterInput}
+        type="text"
+        onChange={handleFilterChange}
+      />
+    </label>
   );
 };
-
-export default Filter;

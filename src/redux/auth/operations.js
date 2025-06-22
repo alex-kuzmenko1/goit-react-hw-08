@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -44,6 +43,7 @@ export const logout = createAsyncThunk(
     try {
       await axios.post('/users/logout');
       clearAuthHeader();
+    //   thunkAPI.dispatch(clearContacts());
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -57,7 +57,7 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (!persistedToken) {
-      return thunkAPI.rejectWithValue('No token');
+      return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     try {
